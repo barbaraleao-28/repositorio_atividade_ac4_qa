@@ -1,0 +1,86 @@
+{
+  "info": {
+    "name": "Semana 13 - Integração Contínua em QA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Buscar usuário 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
+              "pm.test('Usuário retornado tem id 1', () => pm.expect(pm.response.json().id).to.eql(1));",
+              "pm.test('Nome não vazio', () => pm.expect(pm.response.json().name).to.be.a('string').and.not.empty);",
+              "pm.test('Teste novo: e-mail possui formato válido', () => pm.expect(pm.response.json().email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/users/1"
+      }
+    },
+    {
+      "name": "Buscar usuário inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 404', () => pm.response.to.have.status(404));",
+              "pm.test('Resposta vazia', () => pm.expect(pm.response.json()).to.deep.eql({}));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/users/999999"
+      }
+    },
+    {
+      "name": "Criar post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201', () => pm.response.to.have.status(201));",
+              "pm.test('Post recebe id', () => pm.expect(pm.response.json().id).to.be.a('number'));",
+              "pm.test('Título preservado', () => pm.expect(pm.response.json().title).to.eql('Integração contínua em QA'));",
+              "pm.test('Autor preservado', () => pm.expect(pm.response.json().userId).to.eql(1));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "https://jsonplaceholder.typicode.com/posts",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Integração contínua em QA\",\"body\":\"Testes automatizados com Newman e GitHub Actions.\",\"userId\":1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

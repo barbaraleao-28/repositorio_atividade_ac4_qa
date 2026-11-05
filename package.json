@@ -1,0 +1,12 @@
+{
+  "name": "semana13-ci-qa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Atividade Semana 13 - CI em QA",
+  "scripts": {
+    "test": "newman run colecao.json --reporters cli,json,junit --reporter-json-export evidencias/newman.json --reporter-junit-export evidencias/newman.xml"
+  },
+  "devDependencies": {
+    "newman": "6.2.1"
+  }
+}
