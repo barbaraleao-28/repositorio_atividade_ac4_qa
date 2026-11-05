@@ -57,7 +57,8 @@
               "pm.test('Status 201', () => pm.response.to.have.status(201));",
               "pm.test('Post recebe id', () => pm.expect(pm.response.json().id).to.be.a('number'));",
               "pm.test('Título preservado', () => pm.expect(pm.response.json().title).to.eql('Integração contínua em QA'));",
-              "pm.test('Autor preservado', () => pm.expect(pm.response.json().userId).to.eql(1));"
+              "pm.test('Autor preservado', () => pm.expect(pm.response.json().userId).to.eql(1));",
+              "pm.test('Teste novo remoto: corpo do post preservado', () => pm.expect(pm.response.json().body).to.eql('Testes automatizados com Newman e GitHub Actions.'));"
             ]
           }
         }

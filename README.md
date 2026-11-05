@@ -23,7 +23,7 @@ O POST é simulado pela API: a resposta não significa que o post foi persistido
 1. Alterar somente o valor esperado de `Status 200`, de 200 para 201, em `colecao.json`.
 2. Commit e push; abrir Actions e conferir a falha indicando 201 esperado e 200 recebido.
 3. Restaurar 200, fazer commit e push e conferir o resultado verde.
-4. Acrescentar uma assertion para o e-mail do usuário, fazer commit e push e conferir o novo resultado verde.
+4. Acrescentar uma assertion para o corpo do post, fazer commit e push e conferir o novo resultado verde.
 
 As execuções locais são evidências locais; só a execução na aba Actions comprova o CI remoto. Este repositório implementa CI, sem implantação em produção e sem regra de proteção de branch.
 
@@ -33,3 +33,17 @@ As execuções locais são evidências locais; só a execução na aba Actions c
 - https://learning.postman.com/docs/collections/using-newman-cli/newman-options/
 - https://github.com/actions/setup-node
 - https://github.com/actions/upload-artifact
+
+
+## Execuções comprovadas no GitHub Actions
+
+Repositório privado, conforme solicitado: https://github.com/barbaraleao-28/repositorio_atividade_ac4_qa
+
+- Primeiro pipeline aprovado: https://github.com/barbaraleao-28/repositorio_atividade_ac4_qa/actions/runs/42129943947
+- Falha proposital (esperado 201, recebido 200): https://github.com/barbaraleao-28/repositorio_atividade_ac4_qa/actions/runs/42130093311
+- Correção aprovada: https://github.com/barbaraleao-28/repositorio_atividade_ac4_qa/actions/runs/42130384836
+- O commit seguinte adiciona a verificação de preservação do corpo do post. Consulte a aba Actions para o resultado.
+
+Os arquivos foram publicados pela interface web do GitHub porque o gerenciador de credenciais do Git não iniciou no ambiente de execução. Isso gera commits e dispara o mesmo evento push do workflow.
+
+A coleção final tem 3 requisições e 11 assertions: status, identificador/nome/e-mail do usuário, resposta vazia para usuário inexistente e identificador/título/autor/corpo do post criado.
