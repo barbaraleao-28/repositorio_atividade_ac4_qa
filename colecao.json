@@ -12,7 +12,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test('Status 200', () => pm.response.to.have.status(201));",
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
               "pm.test('Usuário retornado tem id 1', () => pm.expect(pm.response.json().id).to.eql(1));",
               "pm.test('Nome não vazio', () => pm.expect(pm.response.json().name).to.be.a('string').and.not.empty);",
               "pm.test('Teste novo: e-mail possui formato válido', () => pm.expect(pm.response.json().email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/));"
