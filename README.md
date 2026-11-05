@@ -11,7 +11,7 @@ npm ci
 npm test
 ```
 
-A coleção Postman v2.1 consulta `GET /users/1` (200), consulta `GET /users/999999` (404) e envia `POST /posts` (201) à API pública https://jsonplaceholder.typicode.com.
+A coleção Postman v2.1 consulta `GET /users/1` (200), consulta `GET /users/9999` (404) e envia `POST /posts` (201) à API pública https://jsonplaceholder.typicode.com.
 O POST é simulado pela API: a resposta não significa que o post foi persistido.
 
 ## Pipeline
@@ -46,4 +46,11 @@ Repositório privado, conforme solicitado: https://github.com/barbaraleao-28/rep
 
 Os arquivos foram publicados pela interface web do GitHub porque o gerenciador de credenciais do Git não iniciou no ambiente de execução. Isso gera commits e dispara o mesmo evento push do workflow.
 
-A coleção final tem 3 requisições e 11 assertions: status, identificador/nome/e-mail do usuário, resposta vazia para usuário inexistente e identificador/título/autor/corpo do post criado.
+A coleção final tem 3 requisições e 12 assertions: status, identificador/nome/e-mail do usuário, resposta vazia para usuário inexistente e identificador/título/autor/corpo do post criado.
+
+
+## Base complementar da aula
+
+Coleção atualizada com a base do professor: nome exato Leanne Graham, validação JSON Schema, usuário inexistente 9999 e título Teste de QA. Mantidas cinco verificações adicionais; total de 12 assertions.
+
+Respostas das lacunas: push, ubuntu-latest e colecao.json. O workflow publicado já aplica esses valores, usando npm ci e relatórios como artefatos.
