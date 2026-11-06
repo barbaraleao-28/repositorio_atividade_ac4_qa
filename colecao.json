@@ -12,16 +12,16 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Status code é 200\", () => {",
+              "pm.test(\"Código de status HTTP 200\", () => {",
               "  pm.response.to.have.status(200)",
               "})",
-              "pm.test(\"O usuário tem id 1\", () => {",
+              "pm.test(\"O usuário possui identificador 1\", () => {",
               "  pm.expect(pm.response.json().id).to.eql(1)",
               "})",
               "pm.test(\"O nome é Leanne Graham\", () => {",
               "  pm.expect(pm.response.json().name).to.eql(\"Leanne Graham\")",
               "})",
-              "pm.test(\"O corpo segue o JSON Schema\", () => {",
+              "pm.test(\"A resposta atende ao JSON Schema\", () => {",
               "  const schema = {",
               "    type: \"object\",",
               "    required: [\"id\", \"name\", \"email\"],",
@@ -29,7 +29,7 @@
               "  }",
               "  pm.response.to.have.jsonSchema(schema)",
               "})",
-              "pm.test('Email valido', () => pm.expect(pm.response.json().email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/));"
+              "pm.test('O e-mail possui formato válido', () => pm.expect(pm.response.json().email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/));"
             ]
           }
         }
@@ -63,7 +63,7 @@
               "pm.test(\"Usuário inexistente devolve 404\", () => {",
               "  pm.response.to.have.status(404)",
               "})",
-              "pm.test('Resposta vazia', () => pm.expect(pm.response.json()).to.deep.eql({}));"
+              "pm.test('A resposta para usuário inexistente é vazia', () => pm.expect(pm.response.json()).to.deep.eql({}));"
             ]
           }
         }
@@ -94,15 +94,15 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Status code é 201 (criado)\", () => {",
+              "pm.test(\"Código de status HTTP 201 para criação\", () => {",
               "  pm.response.to.have.status(201)",
               "})",
-              "pm.test(\"O post volta com o título enviado\", () => {",
+              "pm.test(\"O título enviado é preservado na resposta\", () => {",
               "  pm.expect(pm.response.json().title).to.eql(\"Teste de QA\")",
               "})",
-              "pm.test('Post recebe id', () => pm.expect(pm.response.json().id).to.be.a('number'));",
-              "pm.test('Autor preservado', () => pm.expect(pm.response.json().userId).to.eql(1));",
-              "pm.test('Corpo preservado', () => pm.expect(pm.response.json().body).to.eql('Rodando no pipeline'));"
+              "pm.test('O post recebe um identificador numérico', () => pm.expect(pm.response.json().id).to.be.a('number'));",
+              "pm.test('O autor do post é preservado', () => pm.expect(pm.response.json().userId).to.eql(1));",
+              "pm.test('O corpo do post é preservado', () => pm.expect(pm.response.json().body).to.eql('Rodando no pipeline'));"
             ]
           }
         }

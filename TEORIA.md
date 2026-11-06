@@ -1,29 +1,15 @@
-# Missão 1 — Conceitos
+# Fundamentação teórica
 
-| Conceito | Definição | Aplicação nesta atividade |
-| --- | --- | --- |
-| DevOps | Cultura de colaboração entre desenvolvimento e operação para entregas frequentes e confiáveis. | Automatizar a verificação a cada alteração. |
-| QA | Atuação para prevenir problemas e avaliar a qualidade do produto e do processo. | Definir cenários, assertions e critérios de aprovação. |
-| Shift-left | Antecipar atividades de qualidade no ciclo de desenvolvimento. | Testar cada mudança, antes da entrega. |
-| CI | Integrar e testar alterações automaticamente com frequência. | GitHub Actions executa Newman em cada push. |
-| Entrega contínua | Manter mudanças aprovadas prontas para publicação, com decisão humana de liberar. | Não implementada neste exercício. |
-| Implantação contínua | Publicar automaticamente mudanças aprovadas em produção. | Não implementada neste exercício. |
-| Headless | Executar navegador sem interface gráfica. | Cypress run usa esse modo; Newman testa HTTP sem navegador. |
-| Workflow | Automação descrita em YAML. | .github/workflows/main.yml. |
-| Gatilho | Evento que inicia a automação. | push e workflow_dispatch. |
-| Job | Conjunto de passos executado em um runner. | testes-api. |
-| Runner | Máquina que executa o job. | ubuntu-latest hospedado pelo GitHub. |
-| Step | Comando ou action dentro do job. | Instalar dependências e rodar a coleção. |
-| Action | Componente reutilizável do workflow. | checkout, setup-node e upload-artifact. |
-| Assertion | Verificação de uma expectativa. | Status 200, 404 e 201 e dados das respostas. |
-| Artefato | Arquivo preservado ao final da execução. | Relatórios JSON e JUnit do Newman. |
+A fundamentação da AC4 aborda os conceitos de DevOps, integração contínua, entrega contínua, implantação contínua e execução de testes sem interface gráfica.
 
-## Discussão complementar
+A tabela de conceitos e as respostas completas da Missão 1 estão organizadas no [documento teórico do grupo](https://docs.google.com/document/d/1kE4OXty4JMgDqEIzlUMniFpNfdvoZpbqWd5rIWOECXM/edit). A descrição dos procedimentos e os links das execuções encontram-se no [README](README.md).
 
-Estas respostas são complementares. As três perguntas específicas e a tabela original do roteiro do aluno não foram fornecidas; não se afirma que estes sejam os enunciados do professor.
+## Aplicação dos conceitos no projeto
 
-**Por que usar CI?** Para detectar rapidamente problemas introduzidos por mudanças e verificar o projeto em um ambiente reproduzível, com resultados associados a cada commit.
+A integração contínua foi implementada por meio de um workflow do GitHub Actions, que executa os testes a cada alteração enviada ao repositório. O Newman avalia as respostas HTTP e verifica se atendem aos critérios definidos na coleção.
 
-**Qual é o papel do QA?** Selecionar cenários relevantes, automatizar verificações, estabelecer critérios de aprovação e analisar as falhas. Uma assertion inválida também deve ser corrigida; pipeline verde não garante ausência de todos os defeitos.
+O QA contribui para a definição dos cenários e dos critérios de aprovação, automatiza as verificações e analisa as falhas. Os critérios que bloqueiam uma entrega são acordados pela equipe; neste projeto, qualquer verificação reprovada provoca falha do job.
 
-**O que o ciclo vermelho → verde demonstra?** Que uma expectativa incorreta faz a execução falhar e que sua correção permite a aprovação. O workflow acusa a falha; bloquear merges exige configurar uma regra de proteção separadamente.
+Os testes de API executados pelo Newman não utilizam navegador. O conceito de modo headless se aplica aos testes de interface que executam um navegador sem interface gráfica, como os realizados com Cypress.
+
+O projeto implementa CI. Entrega contínua e implantação contínua são conceitos distintos: na primeira, o código aprovado permanece pronto para publicação com liberação manual; na segunda, a publicação em produção ocorre automaticamente.
